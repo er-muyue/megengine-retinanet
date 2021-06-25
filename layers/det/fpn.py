@@ -30,7 +30,7 @@ from typing import List
 import megengine.functional as F
 import megengine.module as M
 
-from detection import layers
+import layers
 
 
 class FPN(M.Module):

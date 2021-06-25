@@ -11,8 +11,8 @@ import numpy as np
 import megengine.functional as F
 import megengine.module as M
 
-from detection import layers
-from detection.layers.det import resnet
+import layers
+from layers.det import resnet
 
 
 class RetinaNet(M.Module):

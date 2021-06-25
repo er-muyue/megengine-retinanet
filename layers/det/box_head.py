@@ -12,7 +12,7 @@ from typing import List
 import megengine.module as M
 from megengine import Tensor
 
-from detection import layers
+import layers
 
 
 class BoxHead(M.Module):

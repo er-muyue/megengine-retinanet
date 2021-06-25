@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WORK_DIR=$(cd "$(dirname "$0")"; pwd)
-export PYTHONPATH=${WORK_DIR}/../
+export PYTHONPATH=${WORK_DIR}/
 
 # ---- Train ---- #
 python3 tools/train.py \

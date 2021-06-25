@@ -7,7 +7,7 @@
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT ARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 from megengine.data.dataset import COCO, Objects365, PascalVOC
-from detection.tools.dataset import CustomerDataSet
+from tools.dataset import CustomerDataSet
 
 data_mapper = dict(
     coco=COCO,

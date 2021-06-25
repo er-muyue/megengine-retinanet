@@ -12,8 +12,8 @@ import cv2
 
 import megengine as mge
 
-from detection.tools.data_mapper import data_mapper
-from detection.tools.utils import DetEvaluator, import_from_file
+from tools.data_mapper import data_mapper
+from tools.utils import DetEvaluator, import_from_file
 
 logger = mge.get_logger(__name__)
 logger.setLevel("INFO")
