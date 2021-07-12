@@ -19,8 +19,8 @@ import numpy as np
 from megengine.data import Collator, MapSampler, RandomSampler
 from megengine.data.dataset import VisionDataset
 
-from tools.data_mapper import data_mapper
-from tools.nms import py_cpu_nms
+from mge_tools.data_mapper import data_mapper
+from mge_tools.nms import py_cpu_nms
 
 
 class AverageMeter:
@@ -48,6 +48,18 @@ def import_from_file(cfg_file):
     spec.loader.exec_module(cfg_module)
     return cfg_module
 
+def parse_config(config):
+    cfg = dict()
+    for k, v in config.__dict__.items():
+        if not isinstance(v, (int, float, str, list, tuple, dict, np.ndarray)):
+            if hasattr(v, "__name__"):
+                v = v.__name__
+            elif hasattr(v, "__class__"):
+                v = v.__class__
+            elif isinstance(v, functools.partial):
+                v = v.func.__name__
+        cfg[k] = v
+    return cfg
 
 def get_config_info(config):
     config_table = []

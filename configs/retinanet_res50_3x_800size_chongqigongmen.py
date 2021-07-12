@@ -30,9 +30,9 @@ class CustomRetinaNetConfig(models.RetinaNetConfig):
         
         # ------------------------ training cfg ---------------------- #
         self.train_image_short_size = 800
-        self.max_epoch = 36
+        self.max_epoch = 1  # 36
         self.lr_decay_stages = [24, 32]
-        self.nr_images_epoch = 1000
+        self.nr_images_epoch = 100  # 1000
         self.warm_iters = 100
         self.log_interval = 10
 

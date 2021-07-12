@@ -9,15 +9,18 @@
 import argparse
 import json
 import os
+# import sys
+# sys.path.insert(0, "/home/zhengjunfeng/megengine-retinanet/")
 from multiprocessing import Process, Queue
 from tqdm import tqdm
-
 import megengine as mge
 import megengine.distributed as dist
 from megengine.data import DataLoader
+# from megengine.tools.data_mapper import data_mapper
+# from megengine.tools.utils import DetEvaluator, InferenceSampler, import_from_file
 
-from tools.data_mapper import data_mapper
-from tools.utils import DetEvaluator, InferenceSampler, import_from_file
+from mge_tools.data_mapper import data_mapper
+from mge_tools.utils import DetEvaluator, InferenceSampler, import_from_file
 
 logger = mge.get_logger(__name__)
 logger.setLevel("INFO")
@@ -107,13 +110,15 @@ def main():
 
         all_results = DetEvaluator.format(result_list, cfg)
         json_path = "log-of-{}/epoch_{}.json".format(
-            os.path.basename(args.file).split(".")[0], epoch_num
+            os.path.basename(args.file).split(".")[0], 35
         )
         all_results = json.dumps(all_results)
 
         with open(json_path, "w") as fo:
             fo.write(all_results)
         logger.info("Save to %s finished, start evaluation!", json_path)
+
+        # evaluate
 
         eval_gt = COCO(
             os.path.join(

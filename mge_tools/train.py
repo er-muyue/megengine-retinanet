@@ -10,24 +10,26 @@ import argparse
 import bisect
 import copy
 import multiprocessing as mp
-import os
+import os, sys
+sys.path.insert(0, os.getcwd())
 import time
-
 import megengine as mge
 import megengine.distributed as dist
 from megengine.autodiff import GradManager
 from megengine.data import DataLoader, Infinite, RandomSampler
 from megengine.data import transform as T
 from megengine.optimizer import SGD
+from configs.retinanet_res50_3x_800size_chongqigongmen import CustomRetinaNetConfig
 
-from tools.data_mapper import data_mapper
-from tools.utils import (
+from mge_tools.data_mapper import data_mapper
+from mge_tools.utils import (
     AverageMeter,
     DetectionPadCollator,
     GroupedRandomSampler,
     get_config_info,
     import_from_file
 )
+
 
 logger = mge.get_logger(__name__)
 logger.setLevel("INFO")
@@ -58,6 +60,7 @@ def make_parser():
 def main():
     parser = make_parser()
     args = parser.parse_args()
+    cfg = CustomRetinaNetConfig()
 
     # ------------------------ begin training -------------------------- #
     logger.info("Device Count = %d", args.ngpus)

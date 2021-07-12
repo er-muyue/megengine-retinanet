@@ -81,7 +81,6 @@ class AnchorBoxGenerator(BaseAnchorGenerator):
         self.strides = strides
         self.offset = offset
         self.num_features = len(strides)
-
         self.base_anchors = self._different_level_anchors(anchor_scales, anchor_ratios)
 
     @property
@@ -96,10 +95,7 @@ class AnchorBoxGenerator(BaseAnchorGenerator):
         if len(ratios) == 1:
             ratios *= self.num_features
         assert len(ratios) == self.num_features
-        return [
-            tensor(self.generate_base_anchors(scale, ratio))
-            for scale, ratio in zip(scales, ratios)
-        ]
+        return [tensor(self.generate_base_anchors(scale, ratio)) for scale, ratio in zip(scales, ratios)]
 
     def generate_base_anchors(self, scales, ratios):
         base_anchors = []
