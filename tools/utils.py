@@ -19,8 +19,8 @@ import numpy as np
 from megengine.data import Collator, MapSampler, RandomSampler
 from megengine.data.dataset import VisionDataset
 
-from mge_tools.data_mapper import data_mapper
-from mge_tools.nms import py_cpu_nms
+from tools.data_mapper import data_mapper
+from tools.nms import py_cpu_nms
 
 
 class AverageMeter:

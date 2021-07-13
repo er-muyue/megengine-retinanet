@@ -19,8 +19,8 @@ from megengine.data import DataLoader
 # from megengine.tools.data_mapper import data_mapper
 # from megengine.tools.utils import DetEvaluator, InferenceSampler, import_from_file
 
-from mge_tools.data_mapper import data_mapper
-from mge_tools.utils import DetEvaluator, InferenceSampler, import_from_file
+from tools.data_mapper import data_mapper
+from tools.utils import DetEvaluator, InferenceSampler, import_from_file
 
 logger = mge.get_logger(__name__)
 logger.setLevel("INFO")

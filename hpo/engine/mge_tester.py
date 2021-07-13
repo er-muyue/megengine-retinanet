@@ -8,10 +8,10 @@ from megengine.data import DataLoader
 from hp_module.hyper_param import HyperParam
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
-from mge_tools.utils import import_from_file
+from tools.utils import import_from_file
 from hpo_module.engine.engine_base import TESTERS, TesterBase
-from mge_tools.data_mapper import data_mapper
-from mge_tools.utils import DetEvaluator, InferenceSampler, import_from_file
+from tools.data_mapper import data_mapper
+from tools.utils import DetEvaluator, InferenceSampler, import_from_file
 from models.retinanet import RetinaNet
 
 @TESTERS.register

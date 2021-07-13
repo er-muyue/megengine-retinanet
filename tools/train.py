@@ -21,8 +21,8 @@ from megengine.data import transform as T
 from megengine.optimizer import SGD
 from configs.retinanet_res50_3x_800size_chongqigongmen import CustomRetinaNetConfig
 
-from mge_tools.data_mapper import data_mapper
-from mge_tools.utils import (
+from tools.data_mapper import data_mapper
+from tools.utils import (
     AverageMeter,
     DetectionPadCollator,
     GroupedRandomSampler,

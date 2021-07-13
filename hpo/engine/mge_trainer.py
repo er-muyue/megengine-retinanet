@@ -12,8 +12,8 @@ from megengine.data import DataLoader, Infinite, RandomSampler
 from megengine.data import transform as T
 from megengine.optimizer import SGD
 
-from mge_tools.data_mapper import data_mapper
-from mge_tools.utils import AverageMeter, DetectionPadCollator, GroupedRandomSampler, get_config_info, import_from_file
+from tools.data_mapper import data_mapper
+from tools.utils import AverageMeter, DetectionPadCollator, GroupedRandomSampler, get_config_info, import_from_file
 
 from hpo_module.engine.engine_base import TRAINERS, TrainerBase
 

@@ -2,7 +2,7 @@ import os
 import megengine as mge
 from pycocotools import cocoeval
 
-from mge_tools.utils import import_from_file
+from tools.utils import import_from_file
 from hp_module.hyper_param import HyperParam
 from hpo_module.evaluator.base_evaluator import EVALUATORS, BaseEvaluator
 from omegaconf import OmegaConf

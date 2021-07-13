@@ -11,7 +11,7 @@ from hpo_module.evaluator.builder import build as build_evaluator
 from hpo_module.search_manager import SearchManager
 from hpo_module.search_policy.builder import build as build_search_policy
 from hpo_module.utils.utils import get_exp_name_with_param, save_param_performance
-from mge_tools.utils import AverageMeter, DetectionPadCollator, GroupedRandomSampler, parse_config, get_config_info, import_from_file
+from tools.utils import AverageMeter, DetectionPadCollator, GroupedRandomSampler, parse_config, get_config_info, import_from_file
 
 
 class NewSearchManager(SearchManager):
@@ -36,9 +36,9 @@ class NewSearchManager(SearchManager):
         result_path = self.tester.get_result_path()
         param_performance["param"] = search_param
         param_performance["model_path"] = self.trainer.get_model_path()
-        param_performance["performance"] = self.evaluator.evaluate(result_path, train_test_config)
+        # param_performance["performance"] = self.evaluator.evaluate(result_path, train_test_config)
 
-        save_param_performance(self.param_performance_file, param_performance)
+        # save_param_performance(self.param_performance_file, param_performance)
 
 
 
