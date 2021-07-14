@@ -161,11 +161,17 @@ rlaunch --memory 150000 --gpu 8 --cpu 32 -- python3 main/train_search.py -d 0-7 
 ## 1.config配置
 &emsp; 原版mr中已经存在一个retinanet_res50_xxx.py的配置文件。我们需要在此基础上，增加两个配置文件：1）search_config.yaml(用于配置search manager和search policy)和evaluate.yaml(用于配置评估，实际在mr这个repo下面我们没有用这个文件)
 
-### 1.1search_config.yaml,改文件具体内容如下图所示：
+### 1.1 search_config.yaml,该文件具体内容如下图所示：
 <div align=center>
 <img src=https://i.loli.net/2021/07/12/A86lb1hpaYREyW9.png width=100% />
 </div>
 在search_config.yaml中我们配置两个字典：param和hpo。其中param用于配置需要搜索的参数，hpo用于配置manager需要的一些参数。每个参数的具体解释见上一章[3.3.3](#search_config)的介绍。此处注意，hpo配置中填写的evaluator、trainer、tester都还没有具体的实现，接下来我们来看evaluator、trainer以及tester的具体实现,其中的名字以及参数用户可以根据自己的实现进行自由配置。
+
+### 1.2 search_parallel.yaml,该文件具体内容如下图所示：
+<div align=center>
+<img src=https://i.loli.net/2021/07/14/qzho2vL3PRpiKcf.png width=100% />
+</div>
+在search_parallel.yaml中也同样配置了两个字典：param和hpo，不同的是search_parallel.yaml中添加了几个并行搜参的配置参数，具体对应search_manager中run_parallel函数的几个输入参数。这几个参数的具体配置说明见[reprocess](https://git-core.megvii-inc.com/reng/relib/reprocess/-/blob/master/reprocess/common/spec.py)第228行。选择运行tools/train_search.py中search_manager.run()和search_manager.run_parallel()即可对应实现串行和并行搜参
 
 ## 2.trainer、tester和evaluator建立。
 &emsp;建立一个和configs同级的文件夹命名为hpo，然后在hpo中创建如下几个文件(夹)：
