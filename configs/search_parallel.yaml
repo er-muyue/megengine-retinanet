@@ -1,0 +1,37 @@
+param:
+  focal_loss_alpha@choice: [0.25, 0.5]
+  focal_loss_gamma@choice: [1.5, 2.0, 2.5]
+  loss_bbox_weight@choice: [0.5, 1.0, 2.0]
+  warm_iters@quniform: [100, 200, 50]
+
+hpo:
+  param_performance_file: "retinanet_parallel_performance_file.txt"
+  max_search_epoch: 3
+  evaluator:
+    name: ChongQiGongMen
+    ChongQiGongMen:
+      config_path: "/home/zhengjunfeng/megengine-retinanet/configs/evaluate.yaml"
+      
+  search_policy:
+    name: RandomSearch
+    RandomSearch:
+      max_sample_num: 4
+  
+  trainer:
+    name: MGETrainer
+    MGETrainer:
+
+  tester:
+    name: MGETester
+    MGETester:
+
+  analyze:
+    relevant: True
+    visualize: "/data/show.png"
+    get_top_k: 3
+
+  nr_runners: 4
+  mem_per_worker: 40000
+  cpu_per_worker: 4
+  gpu_per_worker: 2
+  charged_group: "v_city"
