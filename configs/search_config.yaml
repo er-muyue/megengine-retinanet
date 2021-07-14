@@ -29,3 +29,10 @@ hpo:
     relevant: True
     visualize: "/data/show.png"
     get_top_k: 3
+    
+  nr_runners: 4
+  mem_per_worker: 40000
+  cpu_per_worker: 4
+  gpu_per_worker: 2
+  charged_group: "v_city"  # 用户根据自己所在组，去brain++平台确定自己的组
+  
