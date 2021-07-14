@@ -170,7 +170,7 @@ rlaunch --memory 150000 --gpu 8 --cpu 32 -- python3 main/train_search.py -d 0-7 
 <div align=center>
 <img src=https://i.loli.net/2021/07/14/hd5PWAwMOKbfZla.png width=100% />
 </div>
-&emsp; 这几个参数的具体配置说明见[reprocess](https://git-core.megvii-inc.com/reng/relib/reprocess/-/blob/master/reprocess/common/spec.py)第228行。选择运行tools/train_search.py中search_manager.run()和search_manager.run_parallel()即可对应实现串行和并行搜参.
+&emsp; 这几个参数的具体配置说明见[reprocess](https://git-core.megvii-inc.com/reng/relib/reprocess/-/blob/master/reprocess/common/spec.py) 第228行。选择运行tools/train_search.py中search_manager.run()和search_manager.run_parallel()即可对应实现串行和并行搜参.
 
 ## 2.trainer、tester和evaluator建立。
 &emsp;建立一个和configs同级的文件夹命名为hpo，然后在hpo中创建如下几个文件(夹)：
