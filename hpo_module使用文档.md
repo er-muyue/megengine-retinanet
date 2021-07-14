@@ -121,7 +121,7 @@ rlaunch --memory 150000 --gpu 8 --cpu 32 -- python3 main/start_mp_train.py -sp 1
 </div>
 
 &emsp;1)param相关配置
-param用于配置需要搜索的参数，在定义需要搜索的参数时只需要从base_config.yaml中挑选需要搜索的参数，按照base_config.yaml中的参数层级给出定义，在search_config.yaml中需要搜索的参数用@+后缀名修饰。此处后缀名有三选择；@quniform，@choice，@randint。其中@quniform表示区间采样, 例如[0.001， 0.01， 0.002]表示在0.001~0.01区间内以间隔0.002采样。@choice表示从给定值中挑选一个，例如["origin", "new"]表示从"origin"和"new"中挑选一个。@randint表示从给定区间中随机生成一个整型数, 例如[2, 10]表示生成2~10之间的整数，一次采样随机挑选一个。
+param用于配置需要搜索的参数，在定义需要搜索的参数时只需要从base_config.yaml中挑选需要搜索的参数，按照base_config.yaml中的参数层级给出定义，在search_config.yaml中需要搜索的参数用@+后缀名修饰。此处后缀名有三选择；@quniform，@choice，@randint。其中@quniform表示区间采样, 例如[0.001， 0.01， 0.002]表示在0.001\~0.01区间内以间隔0.002采样。@choice表示从给定值中挑选一个，例如["origin", "new"]表示从"origin"和"new"中挑选一个。@randint表示从给定区间中随机生成一个整型数, 例如[2, 10]表示生成2\~10之间的整数，一次采样随机挑选一个。
 
 &emsp;2)hpo相关配置
 
