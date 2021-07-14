@@ -183,7 +183,7 @@ rlaunch --memory 150000 --gpu 8 --cpu 32 -- python3 main/train_search.py -d 0-7 
 &emsp;基于megengine框架的训练器。具体实现见mge_trainer.py，mge_trainer的实现主要包括以下内容：创建MGETrainer类，继承并实现[3.2.1](#trainer)需要实现的方法，其中train的实现直接copy原版mr中的即可。训练过程中用到的其他函数，用户根据需要进行添加即可。
 
 ### 2.2 mge_tester.py
-&emsp;基于megengine框架的测试器。具体实现见mge_tester.py,mge_tester的实现主要包括以下内容：创建MGETester类，继承并实现[3.2.2](#tester)需要实现的方法，其中test的实现直接copy原版mr中的即可。测试过程中用到的其他函数，用户根据需要进行添加即可。(_注意:由于这个repo在训练的时候网络模型初始化在子进程中进行，而测试是在主进程中执行，在megengine机制下会存在测试之后子进程中训练模型初始化失败的问题，这里我们对mge_tester进行了修改，详情见mge_tester.py第56和139行，>改为>=号，也即单卡测试也放在子进程中进行，用户使用megengine框架时定义trainer以及tester需要注意这个问题）
+&emsp;基于megengine框架的测试器。具体实现见mge_tester.py,mge_tester的实现主要包括以下内容：创建MGETester类，继承并实现[3.2.2](#tester)需要实现的方法，其中test的实现直接copy原版mr中的即可。测试过程中用到的其他函数，用户根据需要进行添加即可。**(注意:由于这个repo在训练的时候网络模型初始化在子进程中进行，而测试是在主进程中执行，在megengine机制下会存在测试之后子进程中训练模型初始化失败的问题，这里我们对mge_tester进行了修改，详情见mge_tester.py第56和139行，>改为>=号，也即单卡测试也放在子进程中进行，用户使用megengine框架时定义trainer以及tester需要注意这个问题）**
 
 ### 2.3 evaluator.py
 &emsp;基于megengine框架实现的充气拱门检测任务的评估器。具体实现见evaluator/chongqigongmen.py，evaluator的实现主要包括以下内容：创建ChongQiGongMen类，继承并实现[3.2.3](#evaluator)需要实现的方法，其中evaluate的实现直接copy原版mr中的即可。测试过程中用到的其他函数，用户根据需要进行添加即可。
