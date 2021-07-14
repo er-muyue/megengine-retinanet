@@ -53,40 +53,40 @@ class MGETester(TesterBase):
                 )
 
             result_list = []
-            # if self.args.devices > 1:
-            #     result_queue = Queue(2000)
+            if self.args.devices >= 1:
+                result_queue = Queue(2000)
 
-            #     master_ip = "localhost"
-            #     server = dist.Server()
-            #     port = server.py_server_port
-            #     procs = []
-            #     for i in range(self.args.devices):
-            #         proc = Process(
-            #             target=self.worker,
-            #             args=(
-            #                 current_network,
-            #                 config,
-            #                 weight_file,
-            #                 self.args.dataset_dir,
-            #                 result_queue,
-            #                 master_ip,
-            #                 port,
-            #                 self.args.devices,
-            #                 i,
-            #             ),
-            #         )
-            #         proc.start()
-            #         procs.append(proc)
+                master_ip = "localhost"
+                server = dist.Server()
+                port = server.py_server_port
+                procs = []
+                for i in range(self.args.devices):
+                    proc = Process(
+                        target=self.worker,
+                        args=(
+                            current_network,
+                            config,
+                            weight_file,
+                            self.args.dataset_dir,
+                            result_queue,
+                            master_ip,
+                            port,
+                            self.args.devices,
+                            i,
+                        ),
+                    )
+                    proc.start()
+                    procs.append(proc)
 
-            #     num_imgs = dict(coco=5000, objects365=30000, chongqigongmen=97)
+                num_imgs = dict(coco=5000, objects365=30000, chongqigongmen=97)
 
-            #     for _ in tqdm(range(num_imgs[config.test_dataset["name"]])):
-            #         result_list.append(result_queue.get())
+                for _ in tqdm(range(num_imgs[config.test_dataset["name"]])):
+                    result_list.append(result_queue.get())
 
-            #     for p in procs:
-            #         p.join()
-            # else:
-            self.worker(current_network, config, weight_file, self.args.dataset_dir, result_list)
+                for p in procs:
+                    p.join()
+            else:
+                self.worker(current_network, config, weight_file, self.args.dataset_dir, result_list)
 
             all_results = DetEvaluator.format(result_list, config)
             json_path = "search-{}/{}/epoch_{}.json".format(os.path.basename(self.args.cfg).split(".")[0], self.param_name, epoch_num)
@@ -106,11 +106,8 @@ class MGETester(TesterBase):
                 rank=rank,
                 device=rank,
             )
-
-        # setattr(cfg, "backbone_pretrained", False)
         
-        # model = current_network.Net(cfg)
-        model = RetinaNet(cfg)
+        model = current_network.Net(cfg)
         model.eval()
 
         state_dict = mge.load(weight_file)
@@ -139,7 +136,7 @@ class MGETester(TesterBase):
                 "det_res": pred_res,
                 "image_id": int(data[1][3][0]),  # "image_id": int(data[1][2][0].split(".")[0].split("_")[-1]),
             }
-            if dist.get_world_size() > 1:
+            if dist.get_world_size() >= 1:
                 result_list.put_nowait(result)
             else:
                 result_list.append(result)
